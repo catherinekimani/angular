@@ -19,22 +19,29 @@ export class AppComponent implements OnInit {
     setTimeout(() => { observer.next('4') }, 4000)
     setTimeout(() => { observer.next('5') }, 5000)
     setTimeout(()=>{observer.complete()},4000)
-    
-    
-    
     // observer.next('1')
     // observer.next('2')
     // observer.next('3')
-    // observer.next('4')
-
+    // observer.next('4')    
   });
+    // createing an observable using create() method
+    // we need to first access the observable
+  createObservable = Observable.create((observer:any) => {
+    observer.next('a')
+    observer.next('b')
+    
+  });
+
   ngOnInit() {
+    this.createObservable.subscribe((createmeth:any) => {
+      console.log(createmeth)
+    });
     this.myObservable.subscribe((val) => {
       console.log(val);
     }, (error) => {
       // alert(error.message)
     }, () => {
       // alert('observable has completed emitting all values')
-    })
+    });
   }
 }
