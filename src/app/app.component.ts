@@ -29,7 +29,9 @@ export class AppComponent implements OnInit {
   createObservable = Observable.create((observer:any) => {
     observer.next('a')
     observer.next('b')
-    
+    observer.next('c')
+    setTimeout(()=>{observer.error(new Error('something went wrong'))},4000)
+    observer.next('d')
   });
 
   ngOnInit() {
