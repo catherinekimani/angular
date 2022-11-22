@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'angular-observables';
-
+// creating an observable using observable constructor
   myObservable = new Observable((observer) => {
     console.log('observable starts')
     setTimeout(() => { observer.next('1') }, 1000)
@@ -26,24 +26,31 @@ export class AppComponent implements OnInit {
   });
     // createing an observable using create() method
     // we need to first access the observable
-  createObservable = Observable.create((observer:any) => {
-    observer.next('a')
-    observer.next('b')
-    observer.next('c')
-    setTimeout(()=>{observer.error(new Error('something went wrong'))},4000)
-    observer.next('d')
-  });
-
+  // createObservable = Observable.create((observer:any) => {
+  //   observer.next('a')
+  //   observer.next('b')
+  //   observer.next('c')
+    // setTimeout(()=>{observer.error(new Error('something went wrong'))},4000)
+    // observer.next('d')
+  // });
+  // using of() method to create an observable
+  array1= [1, 2, 3, 4, 5];
+  array2= ['a', 'b', 'c', 'd', 'e']
+  ofMethod = of(this.array1,this.array2)
   ngOnInit() {
-    this.createObservable.subscribe((createmeth:any) => {
-      console.log(createmeth)
-    });
-    this.myObservable.subscribe((val) => {
-      console.log(val);
-    }, (error) => {
-      // alert(error.message)
-    }, () => {
+    // this.createObservable.subscribe((createmeth: any) => {
+    //   console.log(createmeth)
+    // });
+    // this.myObservable.subscribe((val) => {
+    //   console.log(val);
+    // }, (error) => {
+    //   // alert(error.message)
+    // }, () => {
       // alert('observable has completed emitting all values')
+    // });
+    // of method
+    this.ofMethod.subscribe((arr) => {
+      console.log(arr)
     });
   }
 }
