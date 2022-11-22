@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of,from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
