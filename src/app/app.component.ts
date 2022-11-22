@@ -34,9 +34,15 @@ export class AppComponent implements OnInit {
     // observer.next('d')
   // });
   // using of() method to create an observable
+  // emits arguements as they are
   array1= [1, 2, 3, 4, 5];
-  array2= ['a', 'b', 'c', 'd', 'e']
-  ofMethod = of(this.array1,this.array2)
+  // array2= ['a', 'b', 'c', 'd', 'e']
+  // ofMethod = of(this.array1,this.array2)
+
+// using from operator
+  // iterator ove the iterable and iterates the values one by one
+  // takes one arguement
+  fromObservable = from(this.array1)
   ngOnInit() {
     // this.createObservable.subscribe((createmeth: any) => {
     //   console.log(createmeth)
@@ -49,8 +55,11 @@ export class AppComponent implements OnInit {
       // alert('observable has completed emitting all values')
     // });
     // of method
-    this.ofMethod.subscribe((arr) => {
-      console.log(arr)
+    // this.ofMethod.subscribe((arr) => {
+    //   console.log(arr)
+    // });
+    this.fromObservable.subscribe((fromOp) => {
+      console.log(fromOp)
     });
   }
 }
