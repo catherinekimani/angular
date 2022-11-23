@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable, of,from } from 'rxjs';
-
+import { map } from 'rxjs/operators'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -35,14 +35,18 @@ export class AppComponent implements OnInit {
   // });
   // using of() method to create an observable
   // emits arguements as they are
-  array1= [1, 2, 3, 4, 5];
+  // array1= [1, 2, 3, 4, 5];
   // array2= ['a', 'b', 'c', 'd', 'e']
   // ofMethod = of(this.array1,this.array2)
 
 // using from operator
   // iterator ove the iterable and iterates the values one by one
   // takes one arguement
+  array1= [1, 2, 3, 4, 5];
   fromObservable = from(this.array1)
+  transformObs=this.fromObservable.pipe(map((value) => {
+    return value * 5;
+  }));
   ngOnInit() {
     // this.createObservable.subscribe((createmeth: any) => {
     //   console.log(createmeth)
@@ -58,7 +62,7 @@ export class AppComponent implements OnInit {
     // this.ofMethod.subscribe((arr) => {
     //   console.log(arr)
     // });
-    this.fromObservable.subscribe((fromOp) => {
+    this.transformObs.subscribe((fromOp) => {
       console.log(fromOp)
     });
   }
