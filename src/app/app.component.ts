@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable, of,from } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map,filter } from 'rxjs/operators'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -47,6 +47,9 @@ export class AppComponent implements OnInit {
   transformObs=this.fromObservable.pipe(map((value) => {
     return value * 5;
   }));
+  filterObs = this.transformObs.pipe(filter((val) => {
+    return val >= 20;
+  }))
   ngOnInit() {
     // this.createObservable.subscribe((createmeth: any) => {
     //   console.log(createmeth)
@@ -62,8 +65,11 @@ export class AppComponent implements OnInit {
     // this.ofMethod.subscribe((arr) => {
     //   console.log(arr)
     // });
-    this.transformObs.subscribe((fromOp) => {
-      console.log(fromOp)
+    // this.transformObs.subscribe((fromOp) => {
+    //   console.log(fromOp)
+    // });
+    this.filterObs.subscribe((filtered) => {
+      console.log(filtered)
     });
   }
 }
